@@ -1,0 +1,86 @@
+﻿@{
+
+    string[] btnOptions =
+    {
+        "btn",
+        "btn-link",
+    };
+    string[] styleOptions =
+{
+        "btn-primary",
+        "btn-secondary",
+        "btn-success",
+        "btn-danger",
+        "btn-warning",
+        "btn-info",
+        "btn-light",
+        "btn-dark",
+    };
+    string[] directionOptions =
+    {
+        "btn-group",
+        "btn-group-vertical",
+    };
+    string[] sizeOptions =
+    {
+        "btn-group-sm",
+        "btn-group-lg",
+    };
+}
+
+@section Scripts {
+    <script>
+        const directionOptions = @Html.Raw(Json.Serialize(directionOptions));
+        const sizeOptions = @Html.Raw(Json.Serialize(sizeOptions));
+        const groupIdList = ['group1', 'group2', 'group3'];
+    </script>
+}
+
+<div class="row pb-5">
+    <div class="col-sm-6">
+        <h5 class="text-center pt-3">Direction Options</h5>
+        <ul class="list-group">
+            @foreach (string option in directionOptions)
+            {
+                <li id="@option" class="list-group-item list-group-item-action"
+                    onclick="makeChange(this, '@option', groupIdList, directionOptions);">
+                    @option
+                </li>
+            }
+        </ul>
+    </div>
+    <div class="col-sm-6">
+        <h5 class="text-center pt-3">Size Options</h5>
+        <ul class="list-group">
+            @foreach (string option in sizeOptions)
+            {
+                <li id="@option" class="list-group-item list-group-item-action"
+                    onclick="makeChange(this, '@option', groupIdList, sizeOptions);">
+                    @option
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+
+<hr />
+<div id="toolbar" class="btn-toolbar">
+    <div id="group1" class="mx-1">
+        @foreach (string option in styleOptions[0..3])
+        {
+            <button class="btn @option">@(option.Split('-')[1])</button>
+        }
+    </div>
+    <div id="group2" class="mx-1">
+        @foreach (string option in styleOptions[3..7])
+        {
+            <button class="btn @option">@(option.Split('-')[1])</button>
+        }
+    </div>
+    <div id="group3" class="mx-1">
+        @foreach (string option in styleOptions[7..^0])
+        {
+            <button class="btn @option">@(option.Split('-')[1])</button>
+        }
+    </div>
+</div>

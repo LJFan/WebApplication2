@@ -1,0 +1,12 @@
+﻿@model string[]
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Examples";
+}
+<dev class="list-group">
+    @foreach (string title in Model)
+    {
+        <a class="list-group-item list-group-item-action" asp-controller="Home" asp-action="Examples" asp-route-id="@title">@title</a>
+    }
+</dev>

@@ -1,0 +1,66 @@
+﻿@{
+    string[] contexts =
+    {
+        "primary",
+        "secondary",
+        "success",
+        "danger",
+        "warning",
+        "info",
+        "light",
+        "dark",
+    };
+}
+
+
+@section Scripts {
+    <script>
+
+    </script>
+}
+
+<h4>Raw List Group</h4>
+<ul class="list-group">
+    <li class="list-group-item active">Active Item</li>
+    <li class="list-group-item disabled">Disabled Item</li>
+    <li class="list-group-item">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">List group item heading</h5>
+            <small>3 days ago</small>
+        </div>
+        <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+        <small>Donec id elit non mi porta.</small>
+    </li>
+    @foreach (int value in Enumerable.Range(1, 3))
+    {
+        <li class="list-group-item">Item #@value</li>
+    }
+</ul>
+
+<h4>List Group with Links</h4>
+<div class="list-group">
+    @foreach (int value in Enumerable.Range(1, 3))
+    {
+        <a class="list-group-item list-group-item-action" href="#">Link #@value</a>
+    }
+</div>
+
+<h4>Contextual List</h4>
+<ul class="list-group">
+    @foreach (string context in contexts)
+    {
+    <li class="list-group-item list-group-item-@context">@context Item</li>
+    }
+</ul>
+
+<h4>List Group with Badges (and Pill Badges)</h4>
+<ul class="list-group">
+    @foreach (string context in contexts)
+    {
+        <li class="list-group-item">
+            Item with @context badge
+            <span class="badge badge-@context">@context</span>
+            <span class="badge badge-pill badge-@context">pill</span>
+        </li>
+    }
+</ul>

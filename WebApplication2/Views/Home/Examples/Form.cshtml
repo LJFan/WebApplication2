@@ -1,0 +1,112 @@
+﻿@{
+    string[] typeList =
+    {
+        "button",
+        "checkbox",
+        "color",
+        "date",
+        "datetime-local",
+        "email",
+        "file",
+        "hidden",
+        "image",
+        "month",
+        "number",
+        "password",
+        "radio",
+        "range",
+        "reset",
+        "search",
+        "submit",
+        "tel",
+        "text",
+        "time",
+        "url",
+        "week",
+    };
+}
+
+
+@section Scripts {
+    <script>
+        const formClassFilter = {
+            "form>div>input[type!='checkbox']<*": ["form-group"],
+            "form>div>input[type='text']": ["form-control"],
+            "form>div>input[type='email']": ["form-control"],
+            "form>div>input[type='password']": ["form-control"],
+            "form>div>input[type='checkbox']<*": ["form-check"],
+            "form>div>input[type='checkbox']": ["form-check-input"],
+            "form>div>input[type='checkbox']~label": ["form-check-label"],
+        };
+        function showPassword(self) {
+            let target = $("#password, #confirm");
+            if (self.checked) {
+                target.prop("type", "text");
+            } else {
+                target.prop("type", "password");
+            }
+        }
+    </script>
+}
+
+<div class="row pb-5">
+    <div class="col-sm-6">
+        <h5 class="text-center pt-3">Basic Options</h5>
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-action"
+                onclick="toggleClasses(this, formClassFilter);">
+                Bootstrap Form Style
+            </li>
+            <li class="list-group-item list-group-item-action"
+                onclick="makeChange(this, ['form-inline'], ['form']);">
+                form-inline
+            </li>
+        </ul>
+    </div>
+</div>
+
+<hr />
+<hr />
+<h4>Register</h4>
+<form id="form">
+    <div>
+        <label for="id">Id</label>
+        <input id="id" type="text" value="17341091" readonly />
+    </div>
+    <div>
+        <label for="username">Username</label>
+        <input id="username" type="text" placeholder="Your Name" />
+    </div>
+    <div>
+        <label for="email">Email</label>
+        <input id="email" type="email" placeholder="Your email address" />
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input id="password" type="password" placeholder="Password" />
+    </div>
+    <div>
+        <label for="confirm">Confirm</label>
+        <input id="confirm" type="password" placeholder="Confirm" />
+    </div>
+    <div>
+        <span id="drop" class="dropdown">
+            <button id="drop-button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">
+                text
+            </button>
+            <span class="dropdown-menu">
+                @foreach (string type in typeList)
+                {
+                    <span onclick="$('#drop-button').text('@type'); $('#custom-input').prop('type', '@type');"
+                          class="dropdown-item">@type</span>
+                    }
+            </span>
+        </span>
+        <input id="custom-input" type="text" placeholder="Custom Input" />
+    </div>
+    <div>
+        <input id="show-password" type="checkbox" onchange="showPassword(this);" />
+        <label for="show-password">Show password</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>

@@ -1,0 +1,76 @@
+﻿@{
+    var table = new (string, string, string)[]
+    {
+        ("172.18.222.6", "172.18.222.6", "Camera: 东校区教学A201"),
+        ("172.18.222.7", "172.18.222.7", "Camera: 东校区教学A202"),
+        ("172.18.222.8", "172.18.222.8", "Camera: 东校区教学A203"),};
+
+    string[] tableOptions =
+    {
+        "table-dark",
+        "table-striped",
+        "table-bordered",
+        "table-hover",
+        "table-sm",
+        "table-responsive",
+    };
+    string[] headOptions =
+    {
+        "thead-light",
+        "thead-dark",
+    };
+}
+
+@section Scripts {
+    <script>
+        const headOptions = @Html.Raw(Json.Serialize(headOptions));
+    </script>
+}
+
+<div class="row pb-5">
+    <div class="col-sm-6">
+        <h5 class="text-center pt-3">Table Options</h5>
+        <ul class="list-group">
+            @foreach (string option in tableOptions)
+            {
+                <li id="@option" class="list-group-item list-group-item-action" 
+                    onclick="makeChange(this, '@option', ['table']);">
+                    @option
+                </li>
+            }
+        </ul>
+    </div>
+    <div class="col-sm-6">
+        <h5 class="text-center pt-3">Head Options</h5>
+        <ul class="list-group">
+            @foreach (string option in headOptions)
+            {
+                <li id="@option" class="list-group-item list-group-item-action" 
+                    onclick="makeChange(this, '@option', ['thead'], headOptions);">
+                    @option
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+
+
+<table id="table" class="table">
+    <thead id="thead">
+        <tr>
+            <th>Name</th>
+            <th>IP</th>
+            <th>Remark</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var row in table)
+        {
+            <tr>
+                <td>@row.Item1</td>
+                <td>@row.Item2</td>
+                <td>@row.Item3</td>
+            </tr>
+        }
+    </tbody>
+</table>

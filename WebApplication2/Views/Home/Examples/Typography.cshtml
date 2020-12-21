@@ -1,0 +1,24 @@
+﻿
+
+<h1>Heading 1</h1>
+<h2>Heading 2</h2>
+<h3>Heading 3</h3>
+<h4>Heading 4</h4>
+<h5>Heading 5</h5>
+<h6>Heading 6</h6>
+
+
+<p>
+    @foreach (int value in Enumerable.Range(1, 6))
+    {
+        <span class=@($"h{value}")>@($"H{value}")</span>
+    }
+</p>
+
+<hr />
+<h1>Main Heading 1 <small>Small Heading 1</small> </h1>
+<h2>Main Heading 2 <small>Small Heading 2</small> </h2>
+<h3>Main Heading 3 <small>Small Heading 3</small> </h3>
+<h4>Main Heading 4 <small>Small Heading 4</small> </h4>
+<h5>Main Heading 5 <small>Small Heading 5</small> </h5>
+<h6>Main Heading 6 <small>Small Heading 6</small> </h6>

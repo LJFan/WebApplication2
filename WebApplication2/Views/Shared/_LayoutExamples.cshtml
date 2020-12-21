@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+@section PrevNext {
+    <div class="row">
+        <div class="col-6">
+            @if (!string.IsNullOrEmpty(ViewBag.Prev))
+            {
+                <a asp-controller="Home" asp-action="Examples" asp-route-id="@ViewBag.Prev"
+                   class="btn btn-outline-primary float-left">Prev - @ViewBag.Prev</a>
+            }
+            else
+            {
+                <button class="btn btn-outline-secondary float-left disabled">Prev - &lt;None&gt;</button>
+            }
+        </div>
+        <div class="col-6">
+            @if (!string.IsNullOrEmpty(ViewBag.Next))
+            {
+                <a asp-controller="Home" asp-action="Examples" asp-route-id="@ViewBag.Next"
+                   class="btn btn-outline-primary float-right">@ViewBag.Next - Next</a>
+            }
+            else
+            {
+                <button class="btn btn-outline-secondary float-right disabled">&lt;None&gt; - Next</button>
+            }
+        </div>
+    </div>
+}
+@section Scripts {
+    <script src="~/js/examples.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+}
+
+@RenderBody()

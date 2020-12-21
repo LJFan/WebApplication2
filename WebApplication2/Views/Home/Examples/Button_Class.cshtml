@@ -1,0 +1,120 @@
+﻿@{
+    var table = new (string, string, string)[]
+    {
+        ("172.18.222.6", "172.18.222.6", "Camera: 东校区教学A201"),
+        ("172.18.222.7", "172.18.222.7", "Camera: 东校区教学A202"),
+        ("172.18.222.8", "172.18.222.8", "Camera: 东校区教学A203"),};
+
+    string[] btnOptions =
+    {
+        "btn",
+        "btn-link",
+    };
+    string[] sizeOptions =
+    {
+        "btn-sm",
+        "btn-lg",
+    };
+    string[] stateOptions =
+{
+        "active",
+        "disabled",
+    };
+    string[] styleOptions =
+{
+        "btn-primary",
+        "btn-secondary",
+        "btn-success",
+        "btn-danger",
+        "btn-warning",
+        "btn-info",
+        "btn-light",
+        "btn-dark",
+    };
+    string[] outlineStyleOptions =
+    {
+        "btn-outline-primary",
+        "btn-outline-secondary",
+        "btn-outline-success",
+        "btn-outline-danger",
+        "btn-outline-warning",
+        "btn-outline-info",
+        "btn-outline-light",
+        "btn-outline-dark",
+    };
+}
+
+@section Scripts {
+    <script>
+        const sizeOptions = @Html.Raw(Json.Serialize(sizeOptions));
+        const stateOptions = @Html.Raw(Json.Serialize(stateOptions));
+        const styleOptions = @Html.Raw(Json.Serialize(styleOptions));
+        const outlineStyleOptions = @Html.Raw(Json.Serialize(outlineStyleOptions));
+        const buttonIdList = ['btn1', 'btn2', 'btn3'];
+    </script>
+}
+
+<div class="row pb-5">
+    <div class="col-md-4">
+        <h5 class="text-center pt-3">Button Options</h5>
+        <ul class="list-group">
+            @foreach (string option in btnOptions)
+            {
+                <li id="@option" class="list-group-item list-group-item-action"
+                    onclick="makeChange(this, '@option', buttonIdList);">
+                    @option
+                </li>
+            }
+        </ul>
+        <h5 class="text-center pt-3">Size Options</h5>
+        <ul class="list-group">
+            @foreach (string option in sizeOptions)
+            {
+                <li id="@option" class="list-group-item list-group-item-action"
+                    onclick="makeChange(this, '@option', buttonIdList, sizeOptions);">
+                    @option
+                </li>
+            }
+        </ul>
+        <h5 class="text-center pt-3">State Options</h5>
+        <ul class="list-group">
+            @foreach (string option in stateOptions)
+            {
+                <li id="@option" class="list-group-item list-group-item-action"
+                    onclick="makeChange(this, '@option', buttonIdList, stateOptions);">
+                    @option
+                </li>
+            }
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <h5 class="text-center pt-3">Style Options</h5>
+        <ul class="list-group">
+            @foreach (string option in styleOptions)
+            {
+                <li id="@option" class="list-group-item list-group-item-action"
+                    onclick="makeChange(this, '@option', buttonIdList, styleOptions);">
+                    @option
+                </li>
+            }
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <h5 class="text-center pt-3">Outline Style Options</h5>
+        <ul class="list-group">
+            @foreach (string option in outlineStyleOptions)
+            {
+                <li id="@option" class="list-group-item list-group-item-action"
+                    onclick="makeChange(this, '@option', buttonIdList, outlineStyleOptions);">
+                    @option
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+
+
+<hr />
+<button id="btn1">Button</button>
+<input id="btn2" type="button" value="Input" />
+<input id="btn3" type="submit" value="Submit" />

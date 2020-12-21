@@ -1,0 +1,65 @@
+﻿<p>My Favourate Poem: </p>
+<blockquote>
+    <p>云鬓花颜金步摇，芙蓉帐暖度春宵。</p>
+    <p>春宵苦短日高起，从此君王不早朝。</p>
+    <footer>——《长恨歌》</footer>
+</blockquote>
+
+@{
+    var countries = new (string, string)[]
+    {
+        ( "China", "China, officially the People's Republic of China (PRC), is a country in East Asia." ),
+        ( "India", "a"),
+        ( "USA", "a"),
+        ( "Australia","a"),
+        ( "Canada","a")
+                                                                                            };
+}
+
+@section Scripts {
+    <script>
+        function toggleOlUl() {
+            var ol = document.getElementById('ol');
+            var ul = document.getElementById('ul');
+            var btn = document.getElementById('toggle-ol-ul');
+            ol.hidden = !ol.hidden;
+            ul.hidden = !ul.hidden;
+            if (!ol.hidden) btn.textContent = 'Ordered List';
+            if (!ul.hidden) btn.textContent = 'Unordered List';
+        }
+        function toggleListStyle(listId, btnId) {
+            var cls = toggleClass(document.getElementById(listId), ['list-unstyled']);
+            document.getElementById(btnId).textContent = cls;
+        }
+    </script>
+}
+
+<hr />
+<button id="toggle-ol-ul" class="btn btn-primary" onclick="toggleOlUl();" style="width: 10rem;">
+    Ordered List
+</button>
+<button id="toggle-ol-ul-style" class="btn btn-primary" onclick="toggleListStyle('ol', 'toggle-ol-ul-style'); toggleListStyle('ul', 'toggle-ol-ul-style');" style="width: 10rem;">
+    @("<empty>")
+</button>
+<ol id="ol">
+    @foreach (var country in countries)
+    {
+        <li>@country.Item1</li>
+    }
+</ol>
+<ul id="ul" hidden>
+    @foreach (var country in countries)
+    {
+        <li>@country.Item1</li>
+    }
+</ul>
+
+
+<hr />
+<dl id="dl">
+    @foreach (var country in countries)
+    {
+        <dt>@country.Item1</dt>
+        <dd>@country.Item2</dd>
+    }
+</dl>

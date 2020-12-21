@@ -1,0 +1,54 @@
+﻿@{
+    var table = new (string, string, string)[]
+    {
+        ("172.18.222.6", "172.18.222.6", "Camera: 东校区教学A201"),
+        ("172.18.222.7", "172.18.222.7", "Camera: 东校区教学A202"),
+        ("172.18.222.8", "172.18.222.8", "Camera: 东校区教学A203"),};
+
+    string[] dropOptions =
+    {
+        "dropdown",
+        "dropleft",
+        "dropright",
+        "dropup",
+    };
+}
+
+@section Scripts {
+    <script>
+        const dropOptions = @Html.Raw(Json.Serialize(dropOptions));
+    </script>
+}
+
+<div class="row pb-5">
+    <div class="col-12">
+        <h5 class="text-center pt-3">Dropdown Variations</h5>
+        <ul class="list-group">
+            @foreach (string option in dropOptions)
+            {
+                <li id="@option" class="list-group-item list-group-item-action"
+                    onclick="makeChange(this, '@option', ['drop'], dropOptions);">
+                    @option
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+
+<hr />
+<div id="drop">
+    <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+        Dropdown
+    </button>
+    <div class="dropdown-menu">
+        @foreach (var header in Enumerable.Range(1, 2))
+        {
+            <div class="dropdown-header">Header header</div>
+            foreach (var action in Enumerable.Range(1, 3))
+            {
+                <a href="#" class="dropdown-item">Action @action</a>
+            }
+            <div class="dropdown-divider"></div>
+        }
+    </div>
+</div>

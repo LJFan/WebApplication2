@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Resource";
+    var resources = new (string, (string, string)[])[]
+    {
+        (
+            "Tutorials",
+            new (string, string)[] {
+                ("C# Tutorial for Beginners", "https://www.youtube.com/watch?v=SXmVym6L8dw&list=PLAC325451207E3105"),
+                ("ASP.NET Core Tutorial for Beginners", "https://www.youtube.com/watch?v=4IgC2Q5-yDE&list=PL6n9fhu94yhVkdrusLaQsfERmL_Jh4XmU"),
+                ("Javascript Tutorial", "https://www.youtube.com/watch?v=PMsVM7rjupU&list=PL6n9fhu94yhUA99nOsJkKXBqokT3MBK0b"),
+                ("Bootstrap Tutorial for Beginners", "https://www.youtube.com/playlist?list=PL6n9fhu94yhXd4xnk-j5FGhHjUv1LsF0V"),
+            }
+        ),
+        (
+            "Documentation",
+            new (string, string)[] {
+                ("Bootstrap 4.0 Documentation", "https://getbootstrap.com/docs/4.0/"),
+            }
+        ),
+        (
+            "Official Site",
+            new (string, string)[] {
+                ("Bootstrap", "https://getbootstrap.com/"),
+            }
+        ),
+
+    };
+}
+
+@foreach (var resource in resources)
+{
+    <h4>@resource.Item1</h4>
+    <ul class="list-group">
+
+        @foreach (var link in resource.Item2)
+        {
+            <li class="list-group-item list-group-item-action">
+                <a href="@link.Item2" target="_blank">@link.Item1</a>
+            </li>
+        }
+    </ul>
+}
+
